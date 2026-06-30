@@ -1,7 +1,7 @@
 App({
-  // 全局后端地址（会自动探测选用最快的可用地址）
+  // 全局后端地址：公网服务器（任意网络都能访问，无需连特定 WiFi）
   globalData: {
-    baseUrl: 'http://localhost:3000', // 默认值，onLaunch 中会自动探测更新
+    baseUrl: 'http://8.217.174.154:3000',
   },
 
   onLaunch() {
