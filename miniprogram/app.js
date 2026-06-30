@@ -1,42 +1,12 @@
 App({
-  // 全局后端地址：公网服务器（任意网络都能访问，无需连特定 WiFi）
+  // 全局后端地址：HTTPS 域名（已备案，可用于正式发布）
   globalData: {
-    baseUrl: 'http://8.217.174.154:3000',
+    baseUrl: 'https://api.badfruite.cn',
   },
 
   onLaunch() {
-    // 若设置页保存过地址，优先用保存的
+    // 若设置页保存过地址，优先用保存的（开发调试时可临时改）
     const saved = wx.getStorageSync('baseUrl');
-    if (saved) {
-      this.globalData.baseUrl = saved;
-      return;
-    }
-    // 否则自动探测可用地址（localhost 优先，失败则用局域网 IP）
-    this.detectBaseUrl();
-  },
-
-  // 自动探测最快的可用后端地址
-  // 候选：localhost（模拟器/同机）、局域网 IP（真机）
-  detectBaseUrl() {
-    const candidates = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://192.168.10.67:3000'];
-    let resolved = false;
-    candidates.forEach((url) => {
-      if (resolved) return;
-      wx.request({
-        url: url + '/api/health',
-        method: 'GET',
-        timeout: 3000,
-        success: (res) => {
-          if (!resolved && res.statusCode === 200) {
-            resolved = true;
-            this.globalData.baseUrl = url;
-            console.log('[app] 选用后端地址:', url);
-          }
-        },
-        fail: () => {
-          console.log('[app] 地址不可用:', url);
-        },
-      });
-    });
+    if (saved) this.globalData.baseUrl = saved;
   },
 });
