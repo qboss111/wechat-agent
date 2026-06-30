@@ -1,0 +1,42 @@
+<view class="md">
+  <block wx:for="{{blocks}}" wx:key="index" wx:for-item="block">
+    <!-- 标题 -->
+    <view wx:if="{{block.type === 'h1'}}" class="md-h1">{{block.content}}</view>
+    <view wx:elif="{{block.type === 'h2'}}" class="md-h2">{{block.content}}</view>
+    <view wx:elif="{{block.type === 'h3'}}" class="md-h3">{{block.content}}</view>
+
+    <!-- 代码块 -->
+    <view wx:elif="{{block.type === 'code'}}" class="md-code-block">
+      <view class="md-code-head">
+        <text class="md-code-lang">{{block.lang || 'code'}}</text>
+        <text class="md-code-copy" bindtap="onCopyCode" data-code="{{block.content}}">复制</text>
+      </view>
+      <text class="md-code-text" user-select="{{true}}" space="nbsp">{{block.content}}</text>
+    </view>
+
+    <!-- 引用 -->
+    <view wx:elif="{{block.type === 'quote'}}" class="md-quote">{{block.content}}</view>
+
+    <!-- 分隔线 -->
+    <view wx:elif="{{block.type === 'hr'}}" class="md-hr"></view>
+
+    <!-- 无序列表 -->
+    <view wx:elif="{{block.type === 'ul'}}" class="md-list">
+      <view wx:for="{{block.items}}" wx:key="index" wx:for-item="item" class="md-li">
+        <text class="md-bullet">•</text>
+        <text class="md-li-text">{{item}}</text>
+      </view>
+    </view>
+
+    <!-- 有序列表 -->
+    <view wx:elif="{{block.type === 'ol'}}" class="md-list">
+      <view wx:for="{{block.items}}" wx:key="index" wx:for-item="item" class="md-li">
+        <text class="md-num">{{index + 1}}.</text>
+        <text class="md-li-text">{{item}}</text>
+      </view>
+    </view>
+
+    <!-- 段落 -->
+    <view wx:else class="md-p">{{block.content}}</view>
+  </block>
+</view>

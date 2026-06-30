@@ -1,0 +1,52 @@
+<view class="page">
+  <!-- 后端状态 -->
+  <view class="section-title">后端状态</view>
+  <view class="card status-card">
+    <block wx:if="{{health}}">
+      <view class="status-row">
+        <text class="status-dot dot-ok"></text>
+        <text>已连接</text>
+      </view>
+      <view class="status-info">
+        <text class="info-line">对话模型：{{health.chatModel}}</text>
+        <text class="info-line">向量模型：{{health.embeddingModel}}</text>
+        <text class="info-line">对话Key：{{health.chatKeyConfigured ? '已配置' : '未配置'}}</text>
+        <text class="info-line">向量Key：{{health.embeddingKeyConfigured ? '已配置' : '未配置'}}</text>
+        <text class="info-line">知识块数：{{health.knowledgeChunks}}</text>
+      </view>
+    </block>
+    <view wx:else class="status-row">
+      <text class="status-dot dot-err"></text>
+      <text>未连接，请检查后端地址或服务是否启动</text>
+    </view>
+    <view class="recheck" bindtap="checkHealth">重新检测</view>
+  </view>
+
+  <!-- 后端地址 -->
+  <view class="section-title">后端地址</view>
+  <view class="card">
+    <input
+      class="url-input"
+      value="{{baseUrl}}"
+      bindinput="onBaseUrlInput"
+      placeholder="http://localhost:3000"
+    />
+    <text class="hint">本地调试用 localhost 或本机 IP；手机真机调试需用电脑局域网 IP</text>
+    <view class="btn-primary" bindtap="onSaveUrl">保存并测试</view>
+  </view>
+
+  <!-- 数据管理 -->
+  <view class="section-title">数据管理</view>
+  <view class="card">
+    <view class="action-row" bindtap="onClearHistory">
+      <text>清空对话记录</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="action-row" bindtap="onClearKb">
+      <text class="danger-text">清空知识库</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <view class="footer">智谱智能体 · 基于 GLM-5 + RAG</view>
+</view>

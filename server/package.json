@@ -1,0 +1,22 @@
+{
+  "name": "wechat-agent-server",
+  "version": "1.0.0",
+  "description": "智谱 GLM 智能体小程序后端：对话 + 知识库 RAG",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^2.0.0",
+    "openai": "^4.67.0",
+    "uuid": "^9.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

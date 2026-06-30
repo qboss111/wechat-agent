@@ -1,0 +1,23 @@
+# 依赖
+server/node_modules/
+server/.env
+server/data/
+
+# 临时部署文件（不需要上传）
+server-deploy.zip
+server-quick-deploy.zip
+server/server-deploy.zip
+server/server-quick-deploy.zip
+server/all_files_b64.txt
+server/ONE_LINE_DEPLOY.js
+server/deploy-files.js
+server/deploy-on-server.js
+server/test-deploy.sh
+
+# 本地配置（含本地路径，不上传）
+project.private.config.json
+
+# 系统
+.DS_Store
+*.log
+*.bat
