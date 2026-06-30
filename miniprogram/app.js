@@ -1,12 +1,10 @@
 App({
-  // 全局后端地址：HTTPS 域名（已备案，可用于正式发布）
+  // 全局后端地址：HTTPS 域名（已备案，已配置合法域名，固定使用）
   globalData: {
     baseUrl: 'https://api.badfruite.cn',
   },
 
   onLaunch() {
-    // 若设置页保存过地址，优先用保存的（开发调试时可临时改）
-    const saved = wx.getStorageSync('baseUrl');
-    if (saved) this.globalData.baseUrl = saved;
+    // 固定使用合法域名，不再读取本地缓存（避免旧地址覆盖导致 not in domain list）
   },
 });

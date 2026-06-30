@@ -16,12 +16,11 @@ Page({
     this.setData({ baseUrl: e.detail.value });
   },
 
-  // 保存后端地址
+  // 保存后端地址（仅存内存，不写本地缓存，避免污染合法域名配置）
   onSaveUrl() {
     const url = this.data.baseUrl.trim().replace(/\/+$/, '');
     app.globalData.baseUrl = url;
-    wx.setStorageSync('baseUrl', url);
-    wx.showToast({ title: '已保存', icon: 'success' });
+    wx.showToast({ title: '已保存(仅本次)', icon: 'success' });
     this.checkHealth();
   },
 
